@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="56dp"
+    android:background="#FFFFFF"
+    android:padding="8dp"
+    android:layout_marginBottom="1dp">
+
+    <TextView
+        android:id="@+id/chatTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="소득세 관련 챗봇"
+        android:textSize="16sp"
+        android:textColor="#000000"
+        android:layout_centerVertical="true"
+        android:layout_alignParentStart="true" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/chatTitle"
+        android:layout_marginTop="12dp"
+        android:background="#000000"/>
+</RelativeLayout>

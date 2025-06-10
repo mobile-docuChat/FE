@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "604899317470",
+    "firebase_url": "https://finalproject-cd990-default-rtdb.firebaseio.com",
+    "project_id": "finalproject-cd990",
+    "storage_bucket": "finalproject-cd990.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:604899317470:android:39670a0365a0aed3ad944f",
+        "android_client_info": {
+          "package_name": "com.inhatc.final_project"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCEF5B15Blobw9jQRlxb426MhYm4vh4NkA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
