@@ -1,5 +1,6 @@
 package com.inhatc.final_project;
 
+import android.content.Intent;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -8,6 +9,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.app.AlertDialog;
 import android.view.View;
+import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,6 +18,8 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,6 +34,15 @@ public class ChatListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chatlist);
+
+        FloatingActionButton btnAddRoom = findViewById(R.id.fab_add);
+
+        // Login 버튼 클릭 이벤트
+        btnAddRoom.setOnClickListener(v -> {
+            Intent intent = new Intent(ChatListActivity.this, CreateRoomActivity.class);
+            startActivity(intent);
+            finish();
+        });
 
         recyclerView = findViewById(R.id.chatRecyclerView);
 
