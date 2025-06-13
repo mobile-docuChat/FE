@@ -10,6 +10,25 @@ import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
+import android.content.Intent;
+import android.os.Bundle;
+import android.util.Log;
+import android.widget.Button;
+import android.widget.TextView;
+
+import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 public class ChatRoomActivity extends AppCompatActivity {
@@ -56,10 +75,8 @@ public class ChatRoomActivity extends AppCompatActivity {
 
                 if (!message.isEmpty()) {
                     //adding user msg
-                    addMessage(message, true);
+                    sendChatMessage(message);
                     userInput.setText("");
-
-                    addMessage("AI 응답 예시입니다. 궁금한거 더 있어요?", false);
 
                     scrollView.post(() -> scrollView.fullScroll(View.FOCUS_DOWN));
                 }
@@ -88,5 +105,29 @@ public class ChatRoomActivity extends AppCompatActivity {
 
         messageView.setLayoutParams(params);
         chatMsg.addView(messageView);
+    }
+
+    //AI에 userMessage 보내고 answer 받아오는 메서드
+    private void sendChatMessage(String userMessage) {
+        ChatRequest request = new ChatRequest(userMessage, "default");
+        ApiService api = RetrofitClient.getApiService();
+        addMessage(userMessage, true);
+        api.sendMessage(request).enqueue(new Callback<ChatResponse>() {
+            @Override
+            public void onResponse(Call<ChatResponse> call, Response<ChatResponse> response) {
+                if (response.isSuccessful()) {
+                    String answer = response.body().getAnswer();
+                    addMessage(answer, false);
+                } else {
+                    addMessage("응답 오류: " + response.message(), false);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ChatResponse> call, Throwable t) {
+                addMessage("통신 실패: " + t.getMessage(), false);
+                Log.e("API_ERROR", t.getMessage(), t);
+            }
+        });
     }
 }
